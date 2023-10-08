@@ -15,7 +15,7 @@ namespace romanlee17.Localization {
         [MenuItem("CONTEXT/TextMeshProUGUI/romanlee17.Localization/Localize")]
         private static void LocalizeTextMeshPro(MenuCommand menuCommand) {
             TextMeshProUGUI textMeshPro = (TextMeshProUGUI)menuCommand.context;
-
+            textMeshPro.gameObject.AddComponent<LocalizeTextMeshPro>();
         }
 
     }

@@ -72,5 +72,20 @@ namespace romanlee17.Localization {
             }
         }
 
+        const string newEntryKey = "new-entry";
+        public LocalizationEntry CreateNewLocalizationEntry() {
+            int sameEntries = entries.Count(x => x.key.Contains(newEntryKey));
+            string key = $"{newEntryKey}({sameEntries})";
+            LocalizationEntry entry = new() {
+                key = key
+            };
+            // Initialize all languages.
+            foreach (var language in Localization.Settings.languages) {
+                _ = entry[language.language];
+            }
+            entries.Add(entry);
+            return entry;
+        }
+
     }
 }

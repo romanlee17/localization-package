@@ -19,6 +19,8 @@ namespace romanlee17.Localization {
         }
         GUIStyle textAreaWrap = null;
 
+        private Vector2 scrollPosition = default;
+
         public override void OnInspectorGUI() {
 
             LocalizationTable table = (LocalizationTable)target;
@@ -33,6 +35,9 @@ namespace romanlee17.Localization {
             if (string.IsNullOrWhiteSpace(table.key)) {
                 EditorGUILayout.HelpBox("Table key can't be empty.", MessageType.Error);
             }
+
+            scrollPosition = EditorGUILayout.BeginScrollView(scrollPosition);
+
             GUILayout.Space(20);
             GUILayout.BeginHorizontal();
             GUILayout.Label("#", EditorStyles.boldLabel,
@@ -77,7 +82,10 @@ namespace romanlee17.Localization {
                 // scene as dirty too, so changes will be saved for sure.
                 EditorSceneManager.MarkSceneDirty(SceneManager.GetActiveScene());
             }
-            
+
+            EditorGUILayout.Space(20);
+            EditorGUILayout.EndScrollView();
+
             // Unselect anything when clicking on window background.
             if (GUI.Button(new Rect(0, 0, Screen.width, Screen.height), "", GUIStyle.none)) {
                 GUI.FocusControl(null);
