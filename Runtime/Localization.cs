@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace romanlee17.UnityLocalization {
+namespace romanlee17.Localization {
     public sealed class Localization {
 
         public static LocalizationSettings Settings {

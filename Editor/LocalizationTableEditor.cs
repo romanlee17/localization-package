@@ -3,7 +3,7 @@ using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine.SceneManagement;
 
-namespace romanlee17.UnityLocalization {
+namespace romanlee17.Localization {
     [CustomEditor(typeof(LocalizationTable))]
     public class LocalizationTableEditor : Editor {
 

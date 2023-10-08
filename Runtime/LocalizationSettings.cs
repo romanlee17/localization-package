@@ -3,8 +3,8 @@ using UnityEngine;
 using TMPro;
 #endif
 
-namespace romanlee17.UnityLocalization {
-    [CreateAssetMenu(menuName = "romanlee17/Localization/Localization Settings", fileName = "LocalizationSettings")]
+namespace romanlee17.Localization {
+    [CreateAssetMenu(menuName = "romanlee17.Localization/Localization Settings", fileName = "LocalizationSettings")]
     public sealed class LocalizationSettings : ScriptableObject {
 
         [System.Serializable]

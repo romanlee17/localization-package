@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-namespace romanlee17.UnityLocalization {
-    [CreateAssetMenu(menuName = "romanlee17/Localization/Localization Table", fileName = "LocalizationTable")]
+namespace romanlee17.Localization {
+    [CreateAssetMenu(menuName = "romanlee17.Localization/Localization Table", fileName = "LocalizationTable")]
     public sealed class LocalizationTable : ScriptableObject {
 
         public string key = string.Empty;

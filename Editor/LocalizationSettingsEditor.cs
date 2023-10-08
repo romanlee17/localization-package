@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEditor.SceneManagement;
 using UnityEngine.SceneManagement;
 
-namespace romanlee17.UnityLocalization {
+namespace romanlee17.Localization {
     [CustomEditor(typeof(LocalizationSettings))]
     public class LocalizationSettingsEditor : Editor {
 
