@@ -1,7 +1,6 @@
 using UnityEngine;
-using static romanlee17.Utils.LocalizationTable;
 
-namespace romanlee17.Utils {
+namespace romanlee17.Localization {
     public sealed class Localization {
 
         public static LocalizationSettings Settings {
@@ -43,13 +42,13 @@ namespace romanlee17.Utils {
             return null;
         }
 
-        public static LocalizationEntry GetEntry(string tableKey, string entryKey) {
+        public static LocalizationTable.LocalizationEntry GetEntry(string tableKey, string entryKey) {
             return GetTable(tableKey)[entryKey];
         }
-        public static LocalizationEntry GetEntry(string address) {
+        public static LocalizationTable.LocalizationEntry GetEntry(string address) {
             if (string.IsNullOrEmpty(address)) {
                 Debug.LogError("Trying to read null or empty localization address.");
-                return LocalizationEntry.empty;
+                return LocalizationTable.LocalizationEntry.empty;
             }
             string[] split = address.Split("/");
             return GetEntry(split[0], split[1]);
