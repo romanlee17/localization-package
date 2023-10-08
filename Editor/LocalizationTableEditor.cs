@@ -1,7 +1,9 @@
 using UnityEngine;
 using UnityEditor;
+using UnityEditor.SceneManagement;
+using UnityEngine.SceneManagement;
 
-namespace romanlee17.Utils {
+namespace romanlee17.UnityLocalization {
     [CustomEditor(typeof(LocalizationTable))]
     public class LocalizationTableEditor : Editor {
 
@@ -37,8 +39,8 @@ namespace romanlee17.Utils {
                    GUILayout.Width(entryIndexWidth), GUILayout.ExpandWidth(false));
             GUILayout.Label("Entries", EditorStyles.boldLabel,
                    GUILayout.MinWidth(entryKeyWidth), GUILayout.ExpandWidth(false));
-            foreach (var language in Localization.Settings.languages) {
-                GUILayout.Label(language.ToString(), EditorStyles.boldLabel,
+            foreach (var entry in Localization.Settings.languages) {
+                GUILayout.Label(entry.language.ToString(), EditorStyles.boldLabel,
                     GUILayout.Width(entryValueWidth), GUILayout.ExpandWidth(true));
             }
             GUILayout.Space(entryButtonWidth);
@@ -53,8 +55,8 @@ namespace romanlee17.Utils {
                     // Display entry keys.
                     table.entries[x].key = EditorGUILayout.TextField(table.entries[x].key,
                         GUILayout.Width(entryKeyWidth), GUILayout.ExpandWidth(false));
-                    foreach (var language in Localization.Settings.languages) {
-                        table.entries[x][language] = EditorGUILayout.TextArea(table.entries[x][language], TextAreaWrap,
+                    foreach (var entry in Localization.Settings.languages) {
+                        table.entries[x][entry.language] = EditorGUILayout.TextArea(table.entries[x][entry.language], TextAreaWrap,
                             GUILayout.Width(entryValueWidth), GUILayout.ExpandWidth(true), GUILayout.ExpandHeight(true));
                     }
                     if (GUILayout.Button(EditorGUIUtility.IconContent("d_TreeEditor.Trash"),
@@ -71,6 +73,9 @@ namespace romanlee17.Utils {
             // Mark as dirty if changes occured.
             if (EditorGUI.EndChangeCheck()) {
                 EditorUtility.SetDirty(table);
+                // Since Unity has problems with SetDirty, mark currently active
+                // scene as dirty too, so changes will be saved for sure.
+                EditorSceneManager.MarkSceneDirty(SceneManager.GetActiveScene());
             }
             
             // Unselect anything when clicking on window background.

@@ -1,7 +1,7 @@
 using TMPro;
 using UnityEngine;
 
-namespace romanlee17.Utils {
+namespace romanlee17.UnityLocalization {
     [RequireComponent(typeof(TextMeshProUGUI))]
     public class LocalizeTextMeshPro : MonoBehaviour {
 
