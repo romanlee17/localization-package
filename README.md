@@ -1,1 +1,1 @@
-# synchronous-localization
+# Unity synchronous localization package.
