@@ -1,4 +1,4 @@
-# Unity synchronous localization package.
+# Synchronous localization package for Unity.
 
 ## Main features:
 1. Intended synchronous behavior since Unity Localization package doesn't provide one for WebGL games.
