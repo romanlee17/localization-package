@@ -1,0 +1,15 @@
+{
+	"name": "com.romanlee17.unitylocalization",
+	"version": "2.0.0",
+	"displayName": "Unity Localization",
+	"description": "Synchronous localization package for Unity.",
+	"unity": "2021.1",
+	"documentationUrl": "https://github.com/romanlee17/unity-localization/wiki",
+	"changelogUrl": "https://github.com/romanlee17/unity-localization",
+	"dependencies": {},
+	"author": {
+		"name": "Roman Lee",
+		"email": "itsromanlee@gmail.com",
+		"url": "https://github.com/romanlee17"
+	}
+}
