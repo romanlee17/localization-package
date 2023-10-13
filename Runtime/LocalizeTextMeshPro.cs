@@ -5,9 +5,8 @@ using UnityEngine;
 
 namespace romanlee17.Localization {
     public class LocalizeTextMeshPro : MonoBehaviour {
-
 #if TextMeshPro
-        // Inaccessible properties.
+        // TextMeshPro component.
         private TextMeshProUGUI TextMeshPro {
             get {
                 if (_textMeshPro == null) {
@@ -16,19 +15,27 @@ namespace romanlee17.Localization {
                 return _textMeshPro;
             }
         }
-
-        // Inaccessible fields.
         private TextMeshProUGUI _textMeshPro = null;
 #endif
-
-        [SerializeField] private string tableKey = default;
-        [SerializeField] private string entryKey = default;
-
+        public string TableKey {
+            get => _tableKey;
+            internal set {
+                _tableKey = value;
+            }
+        }
+        public string EntryKey {
+            get => _entryKey;
+            internal set {
+                _entryKey = value;
+            }
+        }
+        // Inaccessible hidden fields.
+        [SerializeField, HideInInspector] private string _tableKey = default;
+        [SerializeField, HideInInspector] private string _entryKey = default;
 #if TextMeshPro
         private void OnEnable() {
-            TextMeshPro.text = Localization.GetTable(tableKey).GetEntry(entryKey).ReadValue();
+            TextMeshPro.text = Localization.GetTable(_tableKey).GetEntry(_entryKey).ReadValue();
         }
 #endif
-
     }
 }
