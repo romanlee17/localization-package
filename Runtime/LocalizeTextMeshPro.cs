@@ -17,6 +17,7 @@ namespace romanlee17.Localization {
         }
         private TextMeshProUGUI _textMeshPro = null;
 #endif
+        // Properties.
         public string TableKey {
             get => _tableKey;
             internal set {

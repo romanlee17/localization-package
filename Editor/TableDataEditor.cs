@@ -90,12 +90,6 @@ namespace romanlee17.Localization {
             if (GUILayout.Button("New Entry")) {
                 tableData.NewEntry();
             }
-
-            /*// Inaccessible raw data.
-            GUILayout.Space(_space);
-            EditorGUI.BeginDisabledGroup(true);
-            base.OnInspectorGUI();
-            EditorGUI.EndDisabledGroup();*/
             
             // Mark as dirty if changes occured.
             if (EditorGUI.EndChangeCheck()) {

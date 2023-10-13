@@ -29,7 +29,6 @@ namespace romanlee17.Localization {
             get {
                 // Always update settings in editor.
                 if (Application.isEditor) {
-                    Resources.UnloadAsset(_settings);
                     return Resources.LoadAll<Settings>(_folderName)[0];
                 }
                 // Load settings only once in build.
