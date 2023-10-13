@@ -2,6 +2,8 @@ using System.Linq;
 using UnityEngine;
 
 // Localization.GetTable("Example").GetEntry("Example").ReadValue();
+// Localization.LocalizeTextMeshPro("Table", "Entry");
+// Localization.LocalizeLegacyText("Table", "Entry");
 // TableEditor (editor)
 // LocalizeTextMeshPro (component)
 // LocalizeLegacyText (component)
