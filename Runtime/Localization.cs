@@ -1,58 +1,59 @@
+using System.Linq;
 using UnityEngine;
 
+// Localization.GetTable("Example").GetEntry("Example").ReadValue();
+// TableEditor (editor)
+// LocalizeTextMeshPro (component)
+// LocalizeLegacyText (component)
+
 namespace romanlee17.Localization {
-    public sealed class Localization {
-
-        public static LocalizationSettings Settings {
+    public static class Localization {
+        // Inaccessible properties.
+        private static TableData[] Tables {
             get {
-                // Don't cache LocalizationSettings while in Editor.
+                // Always update tables array in editor.
                 if (Application.isEditor) {
-                    return Resources.LoadAll<LocalizationSettings>(string.Empty)[0];
+                    return Resources.LoadAll<TableData>(_folderName);
                 }
-                // Cache LocalizationSettings in Build.
-                return settings != null ? settings :
-                    settings = Resources.LoadAll<LocalizationSettings>(string.Empty)[0];
+                // Load tables array only once in build.
+                if (_tables == null) {
+                    _tables = Resources.LoadAll<TableData>(_folderName);
+                }
+                return _tables;
             }
         }
-        static LocalizationSettings settings = null;
-
-        public static LocalizationTable[] Tables {
+        // Properties.
+        public static Settings Settings {
             get {
-                // Don't cache Tables while in Editor.
+                // Always update settings in editor.
                 if (Application.isEditor) {
-                    return Resources.LoadAll<LocalizationTable>(string.Empty);
+                    Resources.UnloadAsset(_settings);
+                    return Resources.LoadAll<Settings>(_folderName)[0];
                 }
-                // Cache Tables in Build.
-                return tables ??= Resources.LoadAll<LocalizationTable>(string.Empty);
+                // Load settings only once in build.
+                if (_settings == null) {
+                    _settings = Resources.LoadAll<Settings>(_folderName)[0];
+                }
+                return _settings;
             }
         }
-        static LocalizationTable[] tables = null;
-
-        public static SystemLanguage GetLanguage() {
-            return Settings.defaultLanguage;
-        }
-
-        public static LocalizationTable GetTable(string tableKey) {
-            LocalizationTable[] tables = Tables;
-            foreach (var table in tables) {
-                if (table.key != tableKey) continue;
+        // Inaccessible fields.
+        private const string _folderName = "Localization";
+        private static TableData[] _tables = null;
+        private static Settings _settings = null;
+        // Globally accessible functions.
+        public static TableData GetTable(string key) {
+            TableData table = Tables.First(table => table.Key == key);
+            // Check if table with specified key exists.
+            if (table != null) {
+                // Table with specified key exists.
                 return table;
             }
-            Debug.LogError($"No table found with this key: <{tableKey}>.");
-            return null;
-        }
-
-        public static LocalizationTable.LocalizationEntry GetEntry(string tableKey, string entryKey) {
-            return GetTable(tableKey)[entryKey];
-        }
-        public static LocalizationTable.LocalizationEntry GetEntry(string address) {
-            if (string.IsNullOrEmpty(address)) {
-                Debug.LogError("Trying to read null or empty localization address.");
-                return LocalizationTable.LocalizationEntry.empty;
+            // Table with specified key does NOT exist.
+            else {
+                Debug.LogError($"Localization: There is no table with key ({key}).");
+                return null;
             }
-            string[] split = address.Split("/");
-            return GetEntry(split[0], split[1]);
         }
-
     }
 }
