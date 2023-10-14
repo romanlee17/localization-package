@@ -1,24 +1,19 @@
 #if TextMeshPro
 using TMPro;
-#endif
 using UnityEngine;
 
 namespace romanlee17.Localization {
-    [RequireComponent(typeof(TextMeshProUGUI))]
-    public class LocalizeTextMeshPro : MonoBehaviour {
-
-        public string tableKey;
-        public string entryKey;
-
-#if TextMeshPro
-        [SerializeField] TextMeshProUGUI textMeshProUGUI;
-        void OnEnable() {
-            textMeshProUGUI.text = Localization.GetTable(tableKey)[entryKey].ReadValue();
+    public class LocalizeTextMeshPro : BaseLocalizeComponent {
+        // TextMeshPro component.
+        internal TextMeshProUGUI TextMeshPro {
+            get => _textMeshPro;
+            set => _textMeshPro = value;
         }
-        void Reset() {
-            textMeshProUGUI = GetComponent<TextMeshProUGUI>();
+        [SerializeField] private TextMeshProUGUI _textMeshPro = null;
+        // Unity events.
+        private void OnEnable() {
+            Localization.Localize(_tableKey, _entryKey, _textMeshPro);
         }
-#endif
-
     }
 }
+#endif
