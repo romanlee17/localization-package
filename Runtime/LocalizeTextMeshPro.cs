@@ -12,7 +12,7 @@ namespace romanlee17.Localization {
         [SerializeField] private TextMeshProUGUI _textMeshPro = null;
         // Unity events.
         private void OnEnable() {
-            TextMeshPro.text = Localization.GetTable(_tableKey).GetEntry(_entryKey).ReadValue();
+            Localization.Localize(_tableKey, _entryKey, _textMeshPro);
         }
     }
 }

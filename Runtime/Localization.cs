@@ -1,6 +1,11 @@
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
+#if TextMeshPro
+using TMPro;
+#endif
 
+// Done:
 // Localization.GetTable("Example").GetEntry("Example").ReadValue();
 // Localization.LocalizeTextMeshPro("Table", "Entry");
 // Localization.LocalizeLegacyText("Table", "Entry");
@@ -59,5 +64,15 @@ namespace romanlee17.Localization {
         public static bool IsTableExists(string key) {
             return Tables.Any(table => table.Key == key);
         }
+        public static void Localize(string tableKey, string entryKey, Text legacyText) {
+            legacyText.text = GetTable(tableKey).GetEntry(entryKey).ReadValue();
+            legacyText.font = Settings.LegacyFont;
+        }
+#if TextMeshPro
+        public static void Localize(string tableKey, string entryKey, TextMeshProUGUI textMeshPro) {
+            textMeshPro.text = GetTable(tableKey).GetEntry(entryKey).ReadValue();
+            textMeshPro.font = Settings.ProFont;
+        }
+#endif
     }
 }

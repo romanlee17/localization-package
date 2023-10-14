@@ -12,7 +12,7 @@ namespace romanlee17.Localization {
         [SerializeField] private Text _legacyText = null;
         // Unity events.
         private void OnEnable() {
-            _legacyText.text = Localization.GetTable(_tableKey).GetEntry(_entryKey).ReadValue();
+            Localization.Localize(_tableKey, _entryKey, _legacyText);
         }
     }
 }

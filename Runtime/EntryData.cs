@@ -39,7 +39,7 @@ namespace romanlee17.Localization {
             if (_languagePairs == null) {
                 _languagePairs = new StringData[0];
             }
-            if(_languagePairs.Any(pair => pair.Language == language)) {
+            if (_languagePairs.Any(pair => pair.Language == language)) {
                 // There is a language defined in language pairs.
                 return _languagePairs.First(pair => pair.Language == language);
             }
