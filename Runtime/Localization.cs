@@ -11,7 +11,7 @@ using UnityEngine;
 namespace romanlee17.Localization {
     public static class Localization {
         // Inaccessible properties.
-        private static TableData[] Tables {
+        internal static TableData[] Tables {
             get {
                 // Always update tables array in editor.
                 if (Application.isEditor) {
@@ -55,6 +55,9 @@ namespace romanlee17.Localization {
                 Debug.LogError($"Localization: There is no table with key ({key}).");
                 return null;
             }
+        }
+        public static bool IsTableExists(string key) {
+            return Tables.Any(table => table.Key == key);
         }
     }
 }

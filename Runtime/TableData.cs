@@ -40,6 +40,9 @@ namespace romanlee17.Localization {
                 return null;
             }
         }
+        public bool IsEntryExists(string key) {
+            return _entries.Any(entry => entry.Key == key);
+        }
         internal void RemoveAt(int index) {
             List<EntryData> list = _entries.ToList();
             list.RemoveAt(index);

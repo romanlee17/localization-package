@@ -31,8 +31,8 @@ namespace romanlee17.Localization {
             }
         }
         // Inaccessible hidden fields.
-        [SerializeField, HideInInspector] private string _tableKey = default;
-        [SerializeField, HideInInspector] private string _entryKey = default;
+        [SerializeField] private string _tableKey = default;
+        [SerializeField] private string _entryKey = default;
 #if TextMeshPro
         private void OnEnable() {
             TextMeshPro.text = Localization.GetTable(_tableKey).GetEntry(_entryKey).ReadValue();
