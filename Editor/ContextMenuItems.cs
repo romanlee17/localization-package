@@ -9,13 +9,15 @@ namespace romanlee17.Localization {
         [MenuItem("CONTEXT/Text/romanlee17.Localization/Localize")]
         private static void LocalizeLegacyText(MenuCommand menuCommand) {
             Text legacyText = (Text)menuCommand.context;
-            legacyText.gameObject.AddComponent<LocalizeLegacyText>();
+            LocalizeLegacyText localizeComponent = legacyText.gameObject.AddComponent<LocalizeLegacyText>();
+            localizeComponent.LegacyText = legacyText;
         }
 
         [MenuItem("CONTEXT/TextMeshProUGUI/romanlee17.Localization/Localize")]
         private static void LocalizeTextMeshPro(MenuCommand menuCommand) {
             TextMeshProUGUI textMeshPro = (TextMeshProUGUI)menuCommand.context;
-            textMeshPro.gameObject.AddComponent<LocalizeTextMeshPro>();
+            LocalizeTextMeshPro localizeComponent = textMeshPro.gameObject.AddComponent<LocalizeTextMeshPro>();
+            localizeComponent.TextMeshPro = textMeshPro;
         }
 
     }

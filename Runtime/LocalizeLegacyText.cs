@@ -1,20 +1,18 @@
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace romanlee17.Localization {
     public class LocalizeLegacyText : BaseLocalizeComponent {
-        // Legacy text component.
-        private Text LegacyText {
-            get {
-                if (_legacyText == null) {
-                    _legacyText = GetComponent<Text>();
-                }
-                return _legacyText;
-            }
+        // Properties.
+        internal Text LegacyText {
+            get => _legacyText;
+            set => _legacyText = value;
         }
-        private Text _legacyText = null;
+        // Inaccessible fields.
+        [SerializeField] private Text _legacyText = null;
         // Unity events.
         private void OnEnable() {
-            LegacyText.text = Localization.GetTable(_tableKey).GetEntry(_entryKey).ReadValue();
+            _legacyText.text = Localization.GetTable(_tableKey).GetEntry(_entryKey).ReadValue();
         }
     }
 }
