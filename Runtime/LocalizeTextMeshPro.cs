@@ -1,10 +1,9 @@
 #if TextMeshPro
 using TMPro;
 #endif
-using UnityEngine;
 
 namespace romanlee17.Localization {
-    public class LocalizeTextMeshPro : MonoBehaviour {
+    public class LocalizeTextMeshPro : BaseLocalizeComponent {
 #if TextMeshPro
         // TextMeshPro component.
         private TextMeshProUGUI TextMeshPro {
@@ -16,24 +15,7 @@ namespace romanlee17.Localization {
             }
         }
         private TextMeshProUGUI _textMeshPro = null;
-#endif
-        // Properties.
-        public string TableKey {
-            get => _tableKey;
-            internal set {
-                _tableKey = value;
-            }
-        }
-        public string EntryKey {
-            get => _entryKey;
-            internal set {
-                _entryKey = value;
-            }
-        }
-        // Inaccessible hidden fields.
-        [SerializeField] private string _tableKey = default;
-        [SerializeField] private string _entryKey = default;
-#if TextMeshPro
+        // Unity events.
         private void OnEnable() {
             TextMeshPro.text = Localization.GetTable(_tableKey).GetEntry(_entryKey).ReadValue();
         }
