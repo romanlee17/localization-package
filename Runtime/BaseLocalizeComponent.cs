@@ -1,6 +1,7 @@
 using UnityEngine;
 
 namespace romanlee17.Localization {
+    [DisallowMultipleComponent]
     public abstract class BaseLocalizeComponent : MonoBehaviour {
         // Properties.
         public string TableKey {
