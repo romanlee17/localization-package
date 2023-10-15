@@ -71,9 +71,27 @@ namespace romanlee17.Localization {
                 GUILayout.Label("Search entry");
                 _entryPrompt = GUILayout.TextField(_entryPrompt);
                 if (string.IsNullOrEmpty(_entryPrompt) == false) {
-                    GUILayout.Space(_space);
-                    _entryScroll = GUILayout.BeginScrollView(_entryScroll, EditorStyles.helpBox, GUILayout.MinHeight(_searchHeight));
                     TableData table = Localization.GetTable(component.TableKey);
+                    // Button to create new entry.
+                    if (table.IsEntryExists(_entryPrompt)) {
+                        // Disable button and display message of existing entry.
+                        EditorGUI.BeginDisabledGroup(true);
+                        GUILayout.Button($"Create new entry ({_entryPrompt})");
+                        EditorGUI.EndDisabledGroup();
+                        EditorGUILayout.HelpBox($"Entry ({_entryPrompt}) already exists.", MessageType.Warning);
+                    }
+                    else if (GUILayout.Button($"Create new entry ({_entryPrompt})")) {
+                        // Create new entry and assign it to component.
+                        table.Create(_entryPrompt);
+                        // Assign entry to component.
+                        component.EntryKey = _entryPrompt;
+                        // Serialize table with new entry.
+                        SetAsDirty(component, table);
+                    }
+                    // Or select one from search output.
+                    GUILayout.Space(_space);
+                    GUILayout.Label("Select entry from table");
+                    _entryScroll = GUILayout.BeginScrollView(_entryScroll, EditorStyles.helpBox, GUILayout.MinHeight(_searchHeight));
                     _entriesResult = table.Entries.OrderByDescending(entry => entry.Key.SimilarityScore(_entryPrompt)).ToArray();
                     for (int x = 0; x < _entriesResult.Length; x++) {
                         if (GUILayout.Button(_entriesResult[x].Key)) {
@@ -93,10 +111,7 @@ namespace romanlee17.Localization {
 
             // Mark component as dirty if changes occured.
             if (EditorGUI.EndChangeCheck()) {
-                EditorUtility.SetDirty(component);
-                // Since Unity has problems with SetDirty, mark currently active
-                // scene as dirty too, so changes will be saved for sure.
-                EditorSceneManager.MarkSceneDirty(SceneManager.GetActiveScene());
+                SetAsDirty(component);
             }
 
             // Detect table changes.
@@ -134,14 +149,8 @@ namespace romanlee17.Localization {
 
             // Mark table as dirty if changes occured.
             if (EditorGUI.EndChangeCheck()) {
-                EditorUtility.SetDirty(component);
                 TableData table = Localization.GetTable(component.TableKey);
-                if (table != null) {
-                    EditorUtility.SetDirty(table);
-                }
-                // Since Unity has problems with SetDirty, mark currently active
-                // scene as dirty too, so changes will be saved for sure.
-                EditorSceneManager.MarkSceneDirty(SceneManager.GetActiveScene());
+                SetAsDirty(component, table);
             }
 
             // Unselect anything when clicking on window background.
@@ -149,6 +158,18 @@ namespace romanlee17.Localization {
                 GUI.FocusControl(null);
             }
 
+        }
+
+        private void SetAsDirty(BaseLocalizeComponent component, TableData table = null) {
+            // Serialize component.
+            EditorUtility.SetDirty(component);
+            // Serialize table if reference provided.
+            if (table != null) {
+                EditorUtility.SetDirty(table);
+            }
+            // Since Unity has problems with SetDirty, mark currently active
+            // scene as dirty too, so changes will be saved for sure.
+            EditorSceneManager.MarkSceneDirty(SceneManager.GetActiveScene());
         }
 
     }

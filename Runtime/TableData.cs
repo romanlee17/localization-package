@@ -48,8 +48,10 @@ namespace romanlee17.Localization {
             list.RemoveAt(index);
             _entries = list.ToArray();
         }
-        internal void NewEntry() {
-            _entries = _entries.Append(new()).ToArray();
+        internal EntryData Create(string key) {
+            EntryData entry = new(key);
+            _entries = _entries.Append(entry).ToArray();
+            return entry;
         }
     }
 }
