@@ -1,3 +1,4 @@
+#if UNITY_EDITOR
 using TMPro;
 using UnityEditor;
 using UnityEngine.UI;
@@ -21,3 +22,4 @@ namespace romanlee17.Localization {
 
     }
 }
+#endif

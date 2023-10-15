@@ -1,3 +1,4 @@
+#if UNITY_EDITOR
 using UnityEditor;
 
 namespace romanlee17.Localization {
@@ -6,3 +7,4 @@ namespace romanlee17.Localization {
 
     }
 }
+#endif

@@ -1,3 +1,4 @@
+#if UNITY_EDITOR
 using UnityEngine;
 using UnityEditor;
 using UnityEditor.SceneManagement;
@@ -107,3 +108,4 @@ namespace romanlee17.Localization {
 
     }
 }
+#endif
