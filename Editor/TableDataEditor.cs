@@ -86,11 +86,11 @@ namespace romanlee17.Localization {
             EditorGUILayout.EndScrollView();
             EditorGUILayout.Space(_space);
 
-            // Button to add new entries.
-            if (GUILayout.Button("New Entry")) {
-                tableData.NewEntry();
+            // Button to add new entry.
+            if (GUILayout.Button("Create new entry")) {
+                tableData.Create(string.Empty);
             }
-            
+
             // Mark as dirty if changes occured.
             if (EditorGUI.EndChangeCheck()) {
                 EditorUtility.SetDirty(tableData);

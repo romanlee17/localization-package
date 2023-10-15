@@ -12,6 +12,12 @@ namespace romanlee17.Localization {
                 _key = value;
             }
         }
+        // Constructor.
+        public EntryData(string key) {
+            _key = key;
+        }
+        // Inaccessible constructor.
+        private EntryData() { }
         // Inaccessible fields.
         [SerializeField] private string _key = default;
         [SerializeField] private StringData[] _languagePairs = null;
