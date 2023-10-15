@@ -121,19 +121,18 @@ namespace romanlee17.Localization {
             if (_allowEntryEditor) {
                 GUILayout.Label("Entry editor");
                 // Edit entry key value.
+                EntryData entryReference = Localization.GetTable(component.TableKey).GetEntry(component.EntryKey);
                 GUILayout.BeginHorizontal();
                 GUILayout.Label("Key");
+                _entryChange = entryReference.Key;
                 _entryChange = GUILayout.TextField(_entryChange, proportionalField);
-                GUILayout.EndHorizontal();
-                // Get reference for entry.
-                EntryData entryReference = Localization.GetTable(component.TableKey).GetEntry(component.EntryKey);
-                // Set entry key value.
-                if (string.IsNullOrEmpty(_entryChange) == false) {
-                    component.EntryKey = entryReference.Key = _entryChange;
+                if(string.IsNullOrEmpty(_entryChange) == false) {
+                    entryReference.Key = _entryChange;
                 }
                 else {
                     _entryChange = entryReference.Key;
                 }
+                GUILayout.EndHorizontal();
                 // Edit entry language pairs.
                 for (int x = 0; x < Localization.Settings.Languages.Length; x++) {
                     SystemLanguage language = Localization.Settings.Languages[x].Language;
