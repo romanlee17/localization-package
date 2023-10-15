@@ -1,3 +1,4 @@
+#if UNITY_EDITOR
 using System.Linq;
 using UnityEditor;
 using UnityEditor.SceneManagement;
@@ -128,9 +129,11 @@ namespace romanlee17.Localization {
                 _entryChange = GUILayout.TextField(_entryChange, proportionalField);
                 if(string.IsNullOrEmpty(_entryChange) == false) {
                     entryReference.Key = _entryChange;
+                    component.EntryKey = _entryChange;
                 }
                 else {
                     _entryChange = entryReference.Key;
+                    component.EntryKey = entryReference.Key;
                 }
                 GUILayout.EndHorizontal();
                 // Edit entry language pairs.
@@ -173,3 +176,4 @@ namespace romanlee17.Localization {
 
     }
 }
+#endif
