@@ -4,7 +4,7 @@ using UnityEngine;
 using TMPro;
 #endif
 
-namespace romanlee17.Localization {
+namespace romanlee17.Localization.Master {
     [Serializable]
     public class LanguageData {
         // Properties.

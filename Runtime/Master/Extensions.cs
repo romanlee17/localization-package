@@ -1,6 +1,6 @@
 using System;
 
-namespace romanlee17.Localization {
+namespace romanlee17.Localization.Master {
     internal static class Extensions {
         public static bool IsSimilarTo(this string stringA, string stringB) {
             return SimilarityScore(stringA, stringB) >= 0.5f;

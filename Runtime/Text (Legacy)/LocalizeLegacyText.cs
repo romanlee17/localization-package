@@ -1,7 +1,8 @@
+using romanlee17.Localization.Master;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace romanlee17.Localization {
+namespace romanlee17.Localization.Legacy {
     public class LocalizeLegacyText : BaseLocalizeComponent {
         // Properties.
         internal Text LegacyText {
@@ -12,7 +13,7 @@ namespace romanlee17.Localization {
         [SerializeField] private Text _legacyText = null;
         // Unity events.
         private void OnEnable() {
-            Localization.Localize(_tableKey, _entryKey, _legacyText);
+            _legacyText.Localize(_tableKey, _entryKey);
         }
     }
 }

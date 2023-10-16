@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace romanlee17.Localization {
+namespace romanlee17.Localization.Master {
     [DisallowMultipleComponent]
     public abstract class BaseLocalizeComponent : MonoBehaviour {
         // Properties.
