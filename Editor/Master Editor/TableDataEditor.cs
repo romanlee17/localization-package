@@ -1,10 +1,10 @@
-#if UNITY_EDITOR
-using UnityEngine;
-using UnityEditor;
-using UnityEditor.SceneManagement;
-using UnityEngine.SceneManagement;
+namespace romanlee17.LocalizationEditor {
+    using UnityEngine;
+    using UnityEditor;
+    using UnityEditor.SceneManagement;
+    using UnityEngine.SceneManagement;
+    using romanlee17.Localization.Master;
 
-namespace romanlee17.Localization {
     [CustomEditor(typeof(TableData))]
     public class TableDataEditor : Editor {
 
@@ -108,4 +108,3 @@ namespace romanlee17.Localization {
 
     }
 }
-#endif

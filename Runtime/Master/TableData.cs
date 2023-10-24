@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-namespace romanlee17.Localization {
+namespace romanlee17.Localization.Master {
     [CreateAssetMenu(menuName = "romanlee17.Localization/Table")]
     public class TableData : ScriptableObject {
         // Properties.

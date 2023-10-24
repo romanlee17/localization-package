@@ -1,11 +1,11 @@
-#if UNITY_EDITOR
-using System.Linq;
-using UnityEditor;
-using UnityEditor.SceneManagement;
-using UnityEngine;
-using UnityEngine.SceneManagement;
+namespace romanlee17.LocalizationEditor {
+    using System.Linq;
+    using UnityEditor;
+    using UnityEditor.SceneManagement;
+    using UnityEngine;
+    using UnityEngine.SceneManagement;
+    using romanlee17.Localization.Master;
 
-namespace romanlee17.Localization {
     public class LocalizeComponentEditor : Editor {
 
         // Inaccessible properties.
@@ -127,7 +127,7 @@ namespace romanlee17.Localization {
                 GUILayout.Label("Key");
                 _entryChange = entryReference.Key;
                 _entryChange = GUILayout.TextField(_entryChange, proportionalField);
-                if(string.IsNullOrEmpty(_entryChange) == false) {
+                if (string.IsNullOrEmpty(_entryChange) == false) {
                     entryReference.Key = _entryChange;
                     component.EntryKey = _entryChange;
                 }
@@ -176,4 +176,3 @@ namespace romanlee17.Localization {
 
     }
 }
-#endif

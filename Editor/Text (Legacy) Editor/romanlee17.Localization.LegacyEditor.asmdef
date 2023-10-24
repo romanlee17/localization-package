@@ -1,0 +1,18 @@
+{
+    "name": "romanlee17.Localization.LegacyEditor",
+    "rootNamespace": "romanlee17.Localization.LegacyEditor",
+    "references": [
+        "GUID:44a45e5040b82b3468c252894aa538f5",
+        "GUID:cea4642d254fb6645974e46e566448d4",
+        "GUID:06d7f2f1a3b444942a14cfcbf4449fb3"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
