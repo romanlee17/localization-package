@@ -10,7 +10,12 @@ namespace romanlee17.Localization.Master {
         // Properties.
         public SystemLanguage Language {
             get => _language;
-            set => _language = value;
+            set {
+                _language = value;
+#if UNITY_EDITOR
+                UnityEditor.EditorUtility.SetDirty(this);
+#endif
+            }
         }
         internal LanguageData[] Languages {
             get => _languagesData;
