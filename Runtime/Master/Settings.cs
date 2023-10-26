@@ -10,6 +10,7 @@ namespace romanlee17.Localization.Master {
         // Properties.
         public SystemLanguage Language {
             get => _language;
+            set => _language = value;
         }
         internal LanguageData[] Languages {
             get => _languagesData;
